@@ -27,7 +27,7 @@ kind: Service
 metadata:
   name: simple-backend
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: simple-service-backend
   ports:
