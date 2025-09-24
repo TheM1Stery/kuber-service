@@ -30,7 +30,7 @@ kind: Service
 metadata:
   name: simple-frontend
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: simple-service-frontend
   ports:
