@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
       - name: simple-service-frontend
-        env:
-          - name: PUBLIC_BACKEND_URL
-            value: "http://simple-backend"
-        image: registry.them1stery.xyz/simple-service-frontend:latest
+        # env:
+        #   - name: PUBLIC_BACKEND_URL
+        #     value: "http://simple-backend"
+        image: httpd:2.4
         ports:
-          - containerPort: 3000
+          - containerPort: 80
             name: frontend-port
 
 ---
