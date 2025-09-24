@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-service-backend
+  labels:
+    app: simple-service-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simple-service-backend
+  template:
+    metadata:
+      labels:
+        app: simple-service-backend
+    spec:
+      containers:
+      - name: simple-service-backend
+        image: registry.them1stery.xyz/simple-service-backend
+        ports:
+          - containerPort: 8081
+            name: backend-port
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: simple-service-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: backend-port
+
+

@@ -1,0 +1,31 @@
+[package]
+name = "simple-service"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# web
+axum = { version =  "0.8", features = ["ws", "macros"] }
+axum-extra = { version ="0.10", features = ["cookie"] }
+tower = "0.5"
+tower-http = { version = "0.6", features = ["trace", "cors"] }
+listenfd = "1.0"
+config = "0.15"
+
+# async
+tokio = { version = "1", features = ["full"] }
+
+# tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+
+# serde related stuff
+serde = { version = "1.0", features = ["derive"]}
+serde_json = "1.0"
+
+# utils
+scopeguard = "1.2"
+nutype = { version = "0.6", features = ["std","serde"] }
+anyhow = { version ="1.0", features = ["backtrace"] }
+thiserror = "2.0"

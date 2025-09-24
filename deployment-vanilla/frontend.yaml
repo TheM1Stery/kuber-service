@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-service-frontend
+  labels:
+    app: simple-service-frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simple-service-frontend
+  template:
+    metadata:
+      labels:
+        app: simple-service-frontend
+    spec:
+      containers:
+      - name: simple-service-frontend
+        env:
+          - name: PUBLIC_BACKEND_URL
+            value: "http://simple-backend"
+        image: registry.them1stery.xyz/simple-service-frontend:latest
+        ports:
+          - containerPort: 3000
+            name: frontend-port
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: simple-service-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: frontend-port
+
