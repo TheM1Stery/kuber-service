@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
       - name: simple-service-frontend
-        # env:
-        #   - name: PUBLIC_BACKEND_URL
-        #     value: "http://simple-backend"
-        image: httpd:2.4
+        env:
+          - name: PUBLIC_BACKEND_URL
+            value: "http://simple-backend"
+        image: registry.them1stery.xyz/simple-service-frontend
         ports:
-          - containerPort: 80
+          - containerPort: 3000
             name: frontend-port
 
 ---
@@ -30,7 +30,7 @@ kind: Service
 metadata:
   name: simple-frontend
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: simple-service-frontend
   ports:
